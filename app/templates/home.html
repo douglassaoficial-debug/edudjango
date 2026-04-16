@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-4">Bem-vindo ao {{ nome_empresa }}</h1>
+    <hr>
+    <h2 class="text-center mt-4 mb-5">O que nossos melhores alunos dizem (5⭐)</h2>
+
+    <div id="carouselAvaliacoes" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            
+            {% for avaliacao in avaliacoes %}
+                {% if avaliacao.nota == '5' %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <div class="d-flex justify-content-center">
+                        <div class="card shadow border-0 text-center" style="max-width: 600px; border-radius: 15px;">
+                            <div class="card-body p-5">
+                                <div class="mb-3">
+                                    <h6 class="text-warning mb-2">⭐⭐⭐⭐⭐</h6>
+                                </div>
+                                <p class="card-text fs-5 italic">"{{ avaliacao.comentario }}"</p>
+                                <hr class="my-4" style="width: 50px; margin: auto;">
+                                <h5 class="card-title mb-1">{{ avaliacao.nome_aluno }}</h5>
+                                <p class="text-muted small">Aluno do curso: <strong>{{ avaliacao.nome_curso.nome }}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% empty %}
+                <div class="text-center">
+                    <p class="text-muted">Ainda não temos avaliações 5 estrelas para exibir.</p>
+                </div>
+            {% endfor %}
+
+        </div>
+
+        {% if avaliacoes %}
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselAvaliacoes" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselAvaliacoes" data-bs-slide="next">
+                <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+                <span class="visually-hidden">Próximo</span>
+            </button>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

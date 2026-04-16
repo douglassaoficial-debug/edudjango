@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if logado %}
+<p>Bem-vindo de volta, {{ usuario }}!</p>
+<h3>Cursos:</h3>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCurso">
+  Criar novo Curso
+</button>
+<ul>
+  {% for curso in cursos %}
+  <br>
+  <li><strong>{{ curso.nome }}</strong> <br> Carga Horária: {{curso.carga_horaria}} horas <br> Nível: {{curso.nivel}}
+  </li>
+  {% endfor %} <!-- NÃO ESQUECER DE FECHAR A ESTRUTURA LÓGICA -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAvaliacao">
+    Fazer avaliação de curso
+  </button>
+</ul>
+{% else %}
+<p>Por favor, faça login.</p>
+{% endif %} <!-- NÃO ESQUECER DE FECHAR A ESTRUTURA LÓGICA -->
+
+<!-- Modal CursoFrom -->
+<div class="modal fade" id="modalCurso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Criar novo curso</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <form method="POST">
+        {% csrf_token %}
+
+        <div class="modal-body">
+          {{ form.as_p }}
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal AvaliacaoFrom -->
+<div class="modal fade" id="modalAvaliacao" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Deixe sua Avaliação</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <form method="POST">
+        {% csrf_token %}
+
+        <div class="modal-body">
+          {{ form_avaliacao.as_p }}
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+
+          <button type="submit" class="btn btn-primary">Salvar Avaliação</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

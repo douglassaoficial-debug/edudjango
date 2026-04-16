@@ -1,0 +1,94 @@
+/* =========================================
+   VARIÁVEIS DE CORES DO TEMA EDUDJANGO
+   Facilita a mudança de cores no futuro
+========================================= */
+:root {
+    --grafite: #121214;
+    --roxo-profundo: #8257E5;
+    --verde-neon: #04D361;
+    --texto-claro: #e1e1e6;
+}
+
+/* =========================================
+   ESTILOS GERAIS
+========================================= */
+body {
+    background-color: var(--grafite);
+    color: var(--texto-claro);
+    /* Aplica a fonte de código em todo o site */
+    font-family: 'Fira Code', monospace; 
+}
+
+/* =========================================
+   NAVEGAÇÃO (MENU)
+========================================= */
+.custom-navbar {
+    background-color: var(--grafite);
+    /* Borda inferior roxa para dar um corte moderno */
+    border-bottom: 2px solid var(--roxo-profundo); 
+}
+
+.nav-link {
+    color: var(--texto-claro) !important;
+    transition: 0.3s;
+}
+
+/* Efeito Hover: Quando passa o mouse, a letra fica verde e brilha */
+.nav-link:hover, .nav-link.active {
+    color: var(--verde-neon) !important;
+    text-shadow: 0 0 8px var(--verde-neon);
+}
+
+/* =========================================
+   CLASSES UTILITÁRIAS (Para usar onde quiser)
+========================================= */
+.neon-text {
+    color: var(--verde-neon) !important;
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--verde-neon);
+}
+
+.purple-text {
+    color: var(--roxo-profundo) !important;
+}
+
+.custom-hr {
+    border-color: var(--roxo-profundo);
+    opacity: 0.5;
+}
+
+/* =========================================
+   SOBRESCREVENDO O BOOTSTRAP (Botões)
+   Quando usarmos class="btn btn-primary",
+   ele vai puxar nosso verde neon em vez do azul padrão.
+========================================= */
+.btn-primary {
+    background-color: var(--verde-neon);
+    color: var(--grafite); /* Letra escura no botão claro para dar leitura */
+    border: none;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+/* Efeito de brilho quando o mouse passa no botão */
+.btn-primary:hover {
+    background-color: #03a64c; /* Um tom de verde levemente diferente */
+    color: var(--grafite);
+    box-shadow: 0 0 15px var(--verde-neon);
+}
+
+/* Estilizando o formulário do Bootstrap para ficar com tema de terminal */
+.form-control {
+    background-color: #202024;
+    border: 1px solid var(--roxo-profundo);
+    color: var(--texto-claro);
+    font-family: 'Fira Code', monospace;
+}
+
+.form-control:focus {
+    background-color: #202024;
+    color: var(--texto-claro);
+    border-color: var(--verde-neon);
+    box-shadow: 0 0 0 0.25rem rgba(4, 211, 97, 0.25); /* Sombra neon */
+}
